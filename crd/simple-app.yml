@@ -1,3 +1,4 @@
+---
 #
 # simple-app.yml
 #
@@ -15,17 +16,16 @@ spec:
 
   # Where is the app coming from?
   fetch:
-  - git:
-      url: https://gitlab.com/drawsmcgraw/simple-kapp-deployment
-      ref: origin/master
+    - git:
+        url: https://github.com/satya-dillikar/simple-kapp-deployment
+        ref: origin/main
 
-      # We have a directory, named 'app', in the root of our repo.
-      # Files describing the app (i.e. pod, service) are in that directory.
-      subPath: app
+        # We have a directory, named 'app', in the root of our repo.
+        # Files describing the app (i.e. pod, service) are in that directory.
+        subPath: app
 
   # No templating yet...
   template:
-  - ytt: {}
+    - ytt: {}
   deploy:
-  - kapp: {}
-
+    - kapp: {}

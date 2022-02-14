@@ -1,3 +1,4 @@
+---
 #@ load("@ytt:data", "data")
 
 #@ def labels():
@@ -13,8 +14,8 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-  - port: #@ data.values.svc_port
-    targetPort: #@ data.values.app_port
+    - port: #@ data.values.svc_port
+      targetPort: #@ data.values.app_port
   selector: #@ labels()
 ---
 apiVersion: apps/v1
@@ -30,10 +31,8 @@ spec:
       labels: #@ labels()
     spec:
       containers:
-      - name: kapp-deployed-app
-        #image: docker.io/dkalinin/k8s-simple-app@sha256:4c8b96d4fffdfae29258d94a22ae4ad1fe36139d47288b8960d9958d1e63a9d0
-        image: dsatya6/k8s-simple-app:1.0.0
-        env:
-        - name: HELLO_MSG
-          value: #@ data.values.hello_msg
-
+        - name: kapp-deployed-app
+          image: docker.io/dsatya6/k8s-simple-app:1.0.0
+          env:
+            - name: HELLO_MSG
+              value: #@ data.values.hello_msg
